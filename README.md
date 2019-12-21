@@ -455,8 +455,52 @@ auto main() -> int {
 0
 0
 ```
+### Suffix and Prefix Increase Issue
+```c++
+#include <iostream>
 
+// ++v
+template <typename T>
+auto PrefixIncrease(T& v) -> T& {
+  v += 1;
+  return v;
+}
 
+// v++
+template <typename T>
+auto SuffixIncrease(T& v) -> T {
+  T ori = v;
+  v += 1;
+  return ori;
+}
+
+auto main() -> int {
+  int v{};
+  std::cout << PrefixIncrease(PrefixIncrease(v))
+            << std::endl;  // ++(++v): Works
+  std::cout << SuffixIncrease(SuffixIncrease(v))
+            << std::endl;  // (v++)++: Won't compile
+  std::cout << PrefixIncrease(SuffixIncrease(v))
+            << std::endl;  // ++(v++): Won't compile
+  return EXIT_SUCCESS;
+}
+```
+```
+❯ c++ --std=c++17  tmp.cc
+tmp.cc:22:16: error: no matching function for call to 'SuffixIncrease'
+  std::cout << SuffixIncrease(SuffixIncrease(v))
+               ^~~~~~~~~~~~~~
+tmp.cc:12:6: note: candidate function [with T = int] not viable: expects an l-value for 1st argument
+auto SuffixIncrease(T& v) -> T {
+     ^
+tmp.cc:24:16: error: no matching function for call to 'PrefixIncrease'
+  std::cout << PrefixIncrease(SuffixIncrease(v))
+               ^~~~~~~~~~~~~~
+tmp.cc:5:6: note: candidate function [with T = int] not viable: expects an l-value for 1st argument
+auto PrefixIncrease(T& v) -> T& {
+     ^
+2 errors generated.
+```
 
 
 
