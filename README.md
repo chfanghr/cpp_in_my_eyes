@@ -388,7 +388,7 @@ auto PrintS() -> void {
 template <typename Type = int32_t>  // With default value `int32_t`
 auto UseTypeInsideFunction(Type a) -> Type {
   Type tmp = a * 10;
-  return a;
+  return tmp;
 }
 
 auto main() -> int {
@@ -408,6 +408,6 @@ auto main() -> int {
 0.01
 100
 0
-100
-0.01
+1000
+0.1
 ```
