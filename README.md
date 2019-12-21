@@ -227,9 +227,12 @@ void b() {}
 
 int main() { b(); }
 ```
-1. Undefined symbols
+1. Undefined Symbols(s)
 ```bash
 cc a.c b.c
+# Step1: Produce a.o
+# Step2: Produce b.o
+# Step3: Link a.o and b.o together. Error occurs.
 ```
 Output:
 ```
@@ -239,7 +242,7 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ```
-2. Duplicate symbol
+2. Duplicate Symbol(s)
 ```bash
 cc b.c c.c
 ```
@@ -251,4 +254,50 @@ duplicate symbol '_b' in:
 ld: 1 duplicate symbol for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ```
+### Compile-time Error
+1. Syntax Issues
+```c++
+int main(){return 0}
+```
+```
+❯ c++ tmp.cc
+tmp.cc:1:20: error: expected ';' after return statement
+int main(){return 0}
+                   ^
+                   ;
+1 error generated.
+```
+2. Template
+```
+template <typename T>
+void f(T) {}
 
+int main() {
+  f<int>(1);
+  f<1>(1);
+}
+```
+```
+❯ c++ tmp.cc
+tmp.cc:6:3: error: no matching function for call to 'f'
+  f<1>(1);
+  ^~~~
+tmp.cc:2:6: note: candidate template ignored: invalid
+      explicitly-specified argument for template parameter 'T'
+void f(T) {}
+     ^
+1 error generated.
+```
+3. \#error
+```
+int main() {
+#error Mother Fucker
+}
+```
+```
+❯ c++ tmp.cc
+tmp.cc:2:2: error: Mother Fucker
+#error Mother Fucker
+ ^
+1 error generated.
+```
