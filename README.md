@@ -369,3 +369,45 @@ auto main() -> int {
 ❯ ./a.out
 10
 ```
+### Function Template
+```c++
+#include <cstdint>
+#include <cstdlib>
+#include <iostream>
+
+template <typename T>  // T is the name of a type.
+auto DoNothing(const T &ele) -> T {
+  return ele;
+}
+
+template <size_t S = 0>  // S cannot be non-integer.
+auto PrintS() -> void {
+  std::cout << S << std::endl;
+}
+
+template <typename Type = int32_t>  // With default value `int32_t`
+auto UseTypeInsideFunction(Type a) -> Type {
+  Type tmp = a * 10;
+  return a;
+}
+
+auto main() -> int {
+  std::cout << DoNothing(0) << std::endl;
+  std::cout << DoNothing(0.01f) << std::endl;
+  PrintS<100>();
+  PrintS();
+  std::cout << UseTypeInsideFunction(100) << std::endl;
+  std::cout << UseTypeInsideFunction(0.01) << std::endl;
+  return EXIT_SUCCESS;
+}
+```
+```
+❯ c++ tmp.cc --std=c++17
+❯ ./a.out
+0
+0.01
+100
+0
+100
+0.01
+```
