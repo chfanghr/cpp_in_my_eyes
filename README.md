@@ -183,7 +183,7 @@
     - Closing a file
     - Text files and binary files
     - Checking state flags
-    - get and put stream positioning
+    - Get and put stream positioning
     - Buffers and Synchronization
   - Containers: **USE THEM!!!**
   - `<algorithm>`
@@ -195,7 +195,7 @@
 
 ## Examples
 
-### Range-based for loop
+### Range-based For Loop
 ```c++
 #include <iostream>
 #include <vector>
@@ -206,3 +206,49 @@ for(const auto& ele: vec)
 // Will print:
 // 1,2,3
 ```
+### Linker Error
+* `a.c`
+```c
+void a();
+void b();
+
+int main() {
+  a();
+  b();
+}
+```
+* `b.c`
+```c
+void b() {}
+```
+* `c.c`
+```c
+void b() {}
+
+int main() { b(); }
+```
+1. Undefined symbols
+```bash
+cc a.c b.c
+```
+Output:
+```
+Undefined symbols for architecture x86_64:
+  "_a", referenced from:
+      _main in a-dcab57.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+2. Duplicate symbol
+```bash
+cc b.c c.c
+```
+Output:
+```
+duplicate symbol '_b' in:
+    /var/folders/tk/hqz0jxgn71v9l0zb32m0svxh0000gn/T/b-c78963.o
+    /var/folders/tk/hqz0jxgn71v9l0zb32m0svxh0000gn/T/c-1a77b0.o
+ld: 1 duplicate symbol for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
