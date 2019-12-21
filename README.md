@@ -431,6 +431,29 @@ tmp.cc:2:12: warning: implicit conversion from 'int' to 'char' changes value fro
 3 warnings generated.
 ```
 
+### Array Initialization
+```c++
+#include <iostream>
+
+auto main() -> int {
+  int a[10] = {1, 2, 3};
+  for (const auto &ele : a) std::cout << ele << std::endl;
+  return EXIT_SUCCESS;
+}
+```
+❯ c++ --std=c++17  tmp.cc
+❯ ./a.out
+1
+2
+3
+0
+0
+0
+0
+0
+0
+0
+```
 
 
 
