@@ -316,7 +316,7 @@ auto main() -> int {
 
   bs = ~bs;  // Equal to v=~v;
 
-  for (size_t i = 1; i <= 8; i++) std::cout << (int)bs[i];
+  for (size_t i = 1; i <= 8; i++) std::cout << (int)bs[8 - i];
 
   std::cout << std::endl;
 
@@ -327,5 +327,5 @@ auto main() -> int {
 ❯ c++ tmp.cc --std=c++17
 ❯ ./a.out
 10000000
-11111100
+01111111
 ```
