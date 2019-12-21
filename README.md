@@ -202,7 +202,7 @@
 // ...
 std::vector vec{1,2,3};
 for(const auto& ele: vec)
-std::cout<<ele<<","<<std::endl;
+	std::cout<<ele<<","<<std::endl;
 // Will print:
 // 1,2,3
 ```
