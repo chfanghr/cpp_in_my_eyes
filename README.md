@@ -302,7 +302,7 @@ tmp.cc:2:2: error: Mother Fucker
 1 error generated.
 ```
 ### Flip All Bits Using `~`
-```
+```c++
 #include <bitset>
 #include <cstdlib>
 #include <iostream>
