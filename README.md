@@ -441,6 +441,7 @@ auto main() -> int {
   return EXIT_SUCCESS;
 }
 ```
+```
 ❯ c++ --std=c++17  tmp.cc
 ❯ ./a.out
 1
