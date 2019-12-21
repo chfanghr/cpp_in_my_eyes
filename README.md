@@ -329,3 +329,43 @@ auto main() -> int {
 10000000
 01111111
 ```
+
+### Initialize Fields In Constructor
+```c++
+#include <iostream>
+
+class B {
+ private:
+  const int b_;
+
+ public:
+  B(int b) : b_(b) {}
+  auto Get() const -> int { return b_; }
+};
+
+class A {
+ private:
+  const B b_;
+
+ public:
+  A(int a) : b_(a) {}
+  auto Get() const -> int { return b_.Get(); }
+};
+
+class C : private A {
+ public:
+  C(int c) : A(c) {}
+  auto Get() const -> int { return A::Get(); }
+};
+
+auto main() -> int {
+  C c(10);
+  std::cout << c.Get() << std::endl;
+  return EXIT_SUCCESS;
+}
+```
+```
+❯ c++ tmp.cc --std=c++17
+❯ ./a.out
+10
+```
