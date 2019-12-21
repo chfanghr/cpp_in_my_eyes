@@ -1,10 +1,10 @@
 # Note: C++ Language In My Eyes
 
-1. You Should Know About ......
+## First, You Should Know About ......
   - Compiler and Linker
   - Base
   - Memory Layout
-2. Basics of C++
+## Basics of C++
   - Structure of a program
   - Variables and types
     - Identifiers
@@ -38,7 +38,7 @@
     - Standard input (std::cin)
     - `std::cin` and strings
     - `std::stringstream`
-3. Program Structure
+## Program Structure
   - Control Structure
     - Selection statements: `if` and `else`
     - Iteration statements (loops)
@@ -118,7 +118,7 @@
     - `union`
     - `enum`
     - `enum class`
-4. Classes
+## Classes
   - Basics(1)
     - Fields and Methods
     - Constructors
@@ -152,7 +152,7 @@
     - Virtual members
     - Abstract base classes
   - `public`, `private` and `protected`
-5. Other language features  
+## Other language features  
   - Type conversions
     - Implicit conversion
     - Implicit conversions with classes
@@ -177,7 +177,7 @@
     - Predefined macro names
   - `constexpr`
   - Closures and `std::function`
-6. C++ Standard Library
+## C++ Standard Library
   - Input/Output with files
     - Open a file
     - Closing a file
