@@ -301,3 +301,31 @@ tmp.cc:2:2: error: Mother Fucker
  ^
 1 error generated.
 ```
+### Flip All Bits Using `~`
+```
+#include <bitset>
+#include <cstdlib>
+#include <iostream>
+
+auto main() -> int {
+  auto bs = std::bitset<8>{0b10000000};  // Equal to: uint8_t v=0b10000000;
+
+  for (size_t i = 1; i <= 8; i++) std::cout << (int)bs[8 - i];
+
+  std::cout << std::endl;
+
+  bs = ~bs;  // Equal to v=~v;
+
+  for (size_t i = 1; i <= 8; i++) std::cout << (int)bs[i];
+
+  std::cout << std::endl;
+
+  return EXIT_SUCCESS;
+}
+```
+```
+❯ c++ tmp.cc --std=c++17
+❯ ./a.out
+10000000
+11111100
+```
