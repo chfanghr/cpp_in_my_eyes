@@ -411,3 +411,34 @@ auto main() -> int {
 1000
 0.1
 ```
+
+### Multi-character Character Constant
+**Never write code like this**
+```c++
+int main() {
+  char a = '/gdsahfgsdhgfjhdsghfjgsdhjfgds';
+  return 0;
+}
+```
+```
+tmp.cc:2:12: warning: multi-character character constant [-Wmultichar]
+    char a='/gdsahfgsdhgfjhdsghfjgsdhjfgds';
+           ^
+tmp.cc:2:12: warning: character constant too long for its type
+tmp.cc:2:12: warning: implicit conversion from 'int' to 'char' changes value from 1718051955 to 115 [-Wconstant-conversion]
+    char a='/gdsahfgsdhgfjhdsghfjgsdhjfgds';
+         ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3 warnings generated.
+```
+
+
+
+
+
+
+
+
+
+
+
+
