@@ -501,9 +501,28 @@ auto PrefixIncrease(T& v) -> T& {
      ^
 2 errors generated.
 ```
+### Pointers and Arrays
+```c++
+#include <iostream>
 
-
-
+auto main() -> int {
+  int arr[100] = {};
+  auto ptr = arr;  // int *ptr = arr;
+  arr[1] = 1;
+  ptr[1] = 2;
+  std::cout << arr[1] << std::endl;
+  ptr += 1;
+  *ptr = 3;
+  std::cout << arr[1] << std::endl;
+  return EXIT_SUCCESS;
+}
+```
+```
+❯ c++ main.cc --std=c++17 -O3
+❯ ./a.out
+2
+3
+```
 
 
 
